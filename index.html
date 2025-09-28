@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="app.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Chat App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Chat App</h1>
+
+  <div id="chat-box"></div>
+
+  <input type="text" id="message-input" placeholder="Type a message...">
+  <button onclick="sendMessage()">Send</button>
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } 
+      from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
+
+    // ✅ Your Firebase Config (paste from console here)
+    const firebaseConfig = {
+    apiKey: "AIzaSyCwgxYqR4I7_sUU9hu79wymdKWf2WzNPL8",
+    authDomain: "chatbox2331.firebaseapp.com",
+    projectId: "chatbox2331",
+    storageBucket: "chatbox2331.firebasestorage.app",
+    messagingSenderId: "601395779411",
+    appId: "1:601395779411:web:7bd6789cdecdf10d70b3a6",
+    measurementId: "G-EF28G4FM3X"
+  };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ✅ Send Message Function
+    window.sendMessage = async function () {
+      const input = document.getElementById("message-input");
+      if (input.value.trim() !== "") {
+        await addDoc(collection(db, "messages"), {
+          text: input.value,
+          timestamp: serverTimestamp()
+        });
+        input.value = "";
+      }
+    };
+
+    // ✅ Listen for Messages (Real-time)
+    const q = query(collection(db, "messages"), orderBy("timestamp"));
+    onSnapshot(q, (snapshot) => {
+      const chatBox = document.getElementById("chat-box");
+      chatBox.innerHTML = "";
+      snapshot.forEach((doc) => {
+        let msg = doc.data();
+        chatBox.innerHTML += `<p>${msg.text}</p>`;
+      });
+    });
+  </script>
+</body>
+</html>
