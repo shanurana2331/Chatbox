@@ -8,7 +8,7 @@
 <body>
   <h1>Chat App</h1>
 
-  <div id="chat-box"></div>
+  <div id="chat-box" style="height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
 
   <input type="text" id="message-input" placeholder="Type a message...">
   <button id="send-btn">Send</button>
@@ -65,13 +65,13 @@
       messages.forEach(msg => {
         const msgEl = document.createElement("p");
         const time = msg.timestamp
-          ? new Date(msg.timestamp.seconds * 1000).toLocaleTimeString()
+          ? new Date(msg.timestamp.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
           : "";
         msgEl.innerHTML = `<strong>${time}:</strong> ${msg.text}`;
         chatBox.appendChild(msgEl);
       });
 
-      // Auto-scroll to top (latest)
+      // Auto-scroll to top (latest message)
       chatBox.scrollTop = 0;
     });
   </script>
