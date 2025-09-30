@@ -1,6 +1,17 @@
-body {
+/* Heading */
+h1 {
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: #ffe6f0;
+  color: #ff4da6;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  text-shadow: 1px 1px 3px #38212d;
+  text-align: center;
+}
+
+/* Body */
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background: #ffe6f0; /* soft pink background */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,45 +19,40 @@ body {
   margin: 0;
 }
 
-h1 {
-  color: #ff4da6;
-  margin-bottom: 20px;
-  font-size: 2em;
-  text-shadow: 1px 1px 3px #ffb3d9;
-  text-align: center;
-}
-
+/* Chat Box */
 #chat-box {
   width: 90%;
   max-width: 500px;
   height: 400px;
-  background: #fff0f5;
-  border-radius: 15px;
+  background: #ffffff;   /* clean white chat area */
+  border-radius: 10px;
   padding: 15px;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse; /* latest messages on top */
   margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(255, 0, 150, 0.2);
+  box-shadow: 0 3px 10px rgba(211, 39, 56, 0.745);
 }
 
+/* Message Bubbles */
 #chat-box p {
-  background: #ffc0e0;
-  color: #660033;
+  background: #f1f1f1;   /* light grey message bubble */
+  color: #333;
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 10px;
   max-width: 80%;
   word-wrap: break-word;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
+/* Message Input */
 #message-input {
   width: 65%;
   max-width: 350px;
   padding: 12px 15px;
-  border-radius: 25px;
-  border: 2px solid #ff99cc;
+  border-radius: 20px;
+  border: 1px solid #ccc;
   outline: none;
   font-size: 1em;
   margin-right: 10px;
@@ -54,32 +60,32 @@ h1 {
 }
 
 #message-input:focus {
-  border-color: #ff4da6;
-  box-shadow: 0 0 10px rgba(255,77,166,0.3);
+  border-color: #666;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
+/* Send Button */
 button {
   padding: 12px 20px;
-  border-radius: 25px;
+  border-radius: 20px;
   border: none;
-  background: #ff4da6;
+  background: #333;       /* neutral dark button */
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  background: #ff1a75;
-  transform: scale(1.05);
-  box-shadow: 0 5px 10px rgba(255,26,117,0.3);
+  background: #555;
+  transform: scale(1.03);
 }
 
 /* Responsive Design */
 @media only screen and (max-width: 600px) {
   #chat-box {
-    width: 95%;        /* occupy more screen space */
-    height: 70vh;      /* taller chat box on phone */
+    width: 95%;
+    height: 70vh;
     padding: 10px;
   }
 
@@ -91,9 +97,5 @@ button:hover {
 
   button {
     padding: 10px 15px;
-  }
-
-  h1 {
-    font-size: 1.8em;
   }
 }
